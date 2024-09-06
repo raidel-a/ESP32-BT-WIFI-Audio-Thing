@@ -4,11 +4,15 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 
+#define DISABLE_SEND_PWM_BY_TIMER
 #include <IRremote.hpp>
 
-const int IR_RECEIVE_PIN = 34;
+const int IR_RECEIVE_PIN = 15;
+IRrecv irrecv(IR_RECEIVE_PIN);
+decode_results results;
 
-
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
 
 const int PLAY_PAUSE_PIN = 12;
 const int NEXT_PIN = 13;
@@ -123,16 +127,16 @@ void loop()
 {
 
 // if a code is received, print it to the serial port
-  if (IrReceiver.decode()) {
-    Serial.println();
-    Serial.print("IR Code Received: 0x");
-    Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
-    Serial.print("Protocol: ");
-    Serial.println(getProtocolString(IrReceiver.decodedIRData.protocol));
-    Serial.print("Command: ");
-    Serial.println(IrReceiver.decodedIRData.command);
-    IrReceiver.resume(); // Enable receiving of the next value
-  }
+if (IrReceiver.decode()) {
+  Serial.println();
+  Serial.print("IR Code Received: 0x");
+  Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
+  Serial.print("Protocol: ");
+  Serial.println(getProtocolString(IrReceiver.decodedIRData.protocol));
+  Serial.print("Command: ");
+  Serial.println(IrReceiver.decodedIRData.command);
+  IrReceiver.resume();
+}
 
   // Main loop can be empty as we're using interrupts for button handling
   if (WiFi.status() != WL_CONNECTED)
@@ -149,17 +153,4 @@ void loop()
     Serial.println(WiFi.localIP());
   }
   delay(10000); // Check every 10 seconds
-}
-
-
-// Helper function to get protocol name for printing
-const char* getProtocolStringForPrinting(decode_type_t protocol) {
-  switch (protocol) {
-    case NEC: return "NEC";
-    case SONY: return "SONY";
-    case RC5: return "RC5";
-    case RC6: return "RC6";
-    // Add more protocols as needed
-    default: return "UNKNOWN";
-  }
 }
