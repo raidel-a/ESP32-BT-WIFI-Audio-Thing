@@ -191,3 +191,70 @@ IR Code Received: 0xBB440707
 Protocol: Samsung
 Command: 68
 FAVCH
+
+--------------------------------
+
+GE LED Bulb Remote 
+
+IR Code Received: 0xFE017F80
+Protocol: NEC
+Command: 1
+Red
+
+IR Code Received: 0xFD027F80
+Protocol: NEC
+Command: 2
+orange 
+
+IR Code Received: 0xFC037F80
+Protocol: NEC
+Command: 3
+Yellow
+
+IR Code Received: 0xFB047F80
+Protocol: NEC
+Command: 4
+pink
+
+IR Code Received: 0xFA057F80
+Protocol: NEC
+Command: 5
+green
+
+IR Code Received: 0xF9067F80
+Protocol: NEC
+Command: 6
+blue
+
+IR Code Received: 0xF8077F80
+Protocol: NEC
+Command: 7
+light blue
+
+IR Code Received: 0xF7087F80
+Protocol: NEC
+Command: 8
+purple
+
+IR Code Received: 0x22dd7f80
+Protocol: NEC
+Command: 221
+OFF
+
+IR Code Received: 0x639c7f80
+Protocol: NEC
+Command: 156
+ON
+
+--------------------------------
+LED Strip Remote
+
+IR Code Received: 0xfd02ef00
+Protocol: NEC
+Command: 2
+OFF
+
+IR Code Received: 0xfc03ef00
+Protocol: NEC
+Command: 3
+ON
